@@ -1,0 +1,84 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{ planta.species }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>{{ planta.species }}</h1>
+        <p>{{ planta.tag }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Información General</h2>
+
+        <div class="info-grid">
+            <div>
+                <strong>ID:</strong>
+                <span>{{ planta.id }}</span>
+            </div>
+
+            <div>
+                <strong>Código:</strong>
+                <span>{{ planta.tag }}</span>
+            </div>
+
+            <div>
+                <strong>Especie:</strong>
+                <span>{{ planta.species }}</span>
+            </div>
+
+            <div>
+                <strong>Fecha de Germinación:</strong>
+                <span>{{ planta.germination_date }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Condiciones Iniciales</h2>
+
+        <div class="info-grid">
+            <div>
+                <strong>Tipo de suelo</strong>
+                <p>{{ planta.initial_conditions.soil_type }}</p>
+            </div>
+
+            <div>
+                <strong>Exposición a la luz</strong>
+                <p>{{ planta.initial_conditions.light_exposure }}</p>
+            </div>
+
+            <div>
+                <strong>Riego</strong>
+                <p>{{ planta.initial_conditions.watering }}</p>
+            </div>
+
+            <div>
+                <strong>pH del suelo</strong>
+                <p>{{ planta.initial_conditions.soil_ph }}</p>
+            </div>
+
+            <div>
+                <strong>Temperatura</strong>
+                <p>{{ planta.initial_conditions.temperature }}</p>
+            </div>
+
+            <div>
+                <strong>Ventilación</strong>
+                <p>{{ planta.initial_conditions.ventilation }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('planta.listar_plantas') }}" class="btn">
+            Volver al listado
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
