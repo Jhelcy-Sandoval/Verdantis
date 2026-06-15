@@ -1,18 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
-    <div class="container-fluid">
-
-        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-            <img
-                src="{{ url_for('static', filename='img/logo.svg') }}"
-                alt="Logo"
-                width="40"
-                height="40"
-            >
-            <span>Métricas Verdes</span>
-        </a>
+<nav class="navbar navbar-expand-lg p-0">
+    <div class="container-fluid p-3">
 
         <button
-            class="navbar-toggler"
+            class="navbar-toggler "
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarContent"
@@ -22,48 +12,68 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
 
-            <ul class="navbar-nav me-auto">
+            <div class="d-flex
+                flex-column
+                flex-md-row
+                justify-content-end
+                align-items-start
+                align-items-md-center
+                gap-3
+                w-100
+                mt-3
+                mt-md-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        Inicio
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/plantas">
-                        Plantas
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/mediciones">
-                        Mediciones
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/alertas">
-                        Alertas
-                    </a>
-                </li>
-
-            </ul>
-
-            <div class="d-flex">
-
+                <form class="d-none d-md-flex" role="search">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Buscar..."
+                        aria-label="Search"
+                    />
+                </form>
                 <a
-                    href="/alertas"
-                    class="btn btn-warning position-relative"
+                    href="#"
+                    class="text-black text-decoration-none d-flex align-items-center gap-2 "
                 >
-                    Alertas
+                    <i class="bi bi-bell"></i>
 
-                    <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    >
-                        2
+                    <span class="d-inline d-md-none">
+                        Alertas
                     </span>
                 </a>
+                <a
+                    href="#"
+                    class="text-black text-decoration-none d-flex align-items-center gap-2"
+                >
+                    <i class="bi bi-question-circle"></i>
+
+                    <span class="d-inline d-md-none">
+                        Ayuda
+                    </span>
+                </a>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                    >
+                       <i class="bi bi-download"></i> Exportar
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Reporte
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Excel
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
             </div>
 

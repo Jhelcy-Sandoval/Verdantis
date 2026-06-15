@@ -1,44 +1,45 @@
-<div class="sidebar bg-dark text-white">
+<div id="sidebar" class="sidebar">
 
-    <div class="p-3 border-bottom">
-        <h5 class="m-0">Panel de Control</h5>
+    <div class="sidebar-header p-3 border-bottom">
+
+        <h5 class="m-0 sidebar-title">
+            Métricas Verdes
+        </h5>
+
+        <button
+            id="toggleSidebar"
+            class="btn btn-sm "
+        >
+            ◀
+        </button>
+
     </div>
 
     <div class="list-group list-group-flush">
 
-        <a
-            href="/"
-            class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-        >
-            📊 Dashboard
+        <a href="/" class="list-group-item list-group-item-action border-secondary">
+            <i class="bi bi-speedometer2"></i>
+            <span class="menu-text ms-2">Dashboard</span>
         </a>
 
-        <a
-            href="/plantas"
-            class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-        >
-            🌱 Plantas
+        <a href="/plantas" class="list-group-item list-group-item-action border-secondary">
+            <i class="bi bi-tree"></i>
+            <span class="menu-text ms-2">Plantas</span>
         </a>
 
-        <a
-            href="/mediciones"
-            class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-        >
-            🌡️ Mediciones
+        <a href="/mediciones" class="list-group-item list-group-item-action border-secondary">
+            <i class="bi bi-thermometer-half"></i>
+            <span class="menu-text ms-2">Mediciones</span>
         </a>
 
-        <a
-            href="/alertas"
-            class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-        >
-            🔔 Alertas
+        <a href="/alertas" class="list-group-item list-group-item-action border-secondary">
+            <i class="bi bi-bell"></i>
+            <span class="menu-text ms-2">Alertas</span>
         </a>
 
-        <a
-            href="/reportes"
-            class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-        >
-            📄 Reportes
+        <a href="/reportes" class="list-group-item list-group-item-action border-secondary">
+            <i class="bi bi-file-earmark-text"></i>
+            <span class="menu-text ms-2">Reportes</span>
         </a>
 
     </div>
