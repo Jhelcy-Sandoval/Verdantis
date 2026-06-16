@@ -4,16 +4,53 @@ from app import db
 
 class PlantaRepository:
 
-    def obtener_todas(self):
-        return Planta.query.all()
+    def listar_por_usuario(
+        self,
+        user_id
+    ):
 
-    def obtener_por_id(self, id):
-        return Planta.query.get(id)
+        return Planta.query.filter_by(
+            user_id=user_id
+        ).all()
 
-    def guardar(self, planta):
+
+    def obtener_por_id(
+        self,
+        planta_id
+    ):
+
+        return Planta.query.get(
+            planta_id
+        )
+
+
+    def obtener_por_id_y_usuario(
+        self,
+        planta_id,
+        user_id
+    ):
+
+        return Planta.query.filter_by(
+            id=planta_id,
+            user_id=user_id
+        ).first()
+
+
+    def guardar(
+        self,
+        planta
+    ):
+
         db.session.add(planta)
         db.session.commit()
 
-    def eliminar(self, planta):
+        return planta
+
+
+    def eliminar(
+        self,
+        planta
+    ):
+
         db.session.delete(planta)
         db.session.commit()

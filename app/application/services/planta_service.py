@@ -7,14 +7,29 @@ class PlantaService:
     def __init__(self):
         self.repository = PlantaRepository()
 
-    def listar_plantas(self):
-        return self.repository.obtener_todas()
+    def listar_plantas_por_usuario(
+        self,
+        user_id
+    ):
 
-    def obtener_por_id(self, id):
-        return self.repository.obtener_por_id(id)
+        return self.repository.listar_por_usuario(
+            user_id
+        )
+
+    def obtener_por_id_y_usuario(
+        self,
+        planta_id,
+        user_id
+    ):
+
+        return self.repository.obtener_por_id_y_usuario(
+            planta_id,
+            user_id
+        )
 
     def crear_planta(
         self,
+        user_id,
         tag,
         species,
         germination_date,
@@ -22,17 +37,34 @@ class PlantaService:
     ):
 
         planta = Planta(
+            user_id=user_id,
             tag=tag,
             species=species,
             germination_date=germination_date,
             initial_conditions=initial_conditions
         )
 
-        self.repository.guardar(planta)
+        return self.repository.guardar(
+            planta
+        )
 
-    def eliminar_planta(self, id):
+    def eliminar_planta(
+        self,
+        planta_id,
+        user_id
+    ):
 
-        planta = self.repository.obtener_por_id(id)
+        planta = self.repository.obtener_por_id_y_usuario(
+            planta_id,
+            user_id
+        )
 
         if planta:
-            self.repository.eliminar(planta)
+
+            self.repository.eliminar(
+                planta
+            )
+
+            return True
+
+        return False

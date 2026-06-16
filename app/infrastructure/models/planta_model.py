@@ -1,6 +1,5 @@
 from app import db
 
-
 class Planta(db.Model):
 
     __tablename__ = "plantas"
@@ -8,6 +7,11 @@ class Planta(db.Model):
     id = db.Column(
         db.Integer,
         primary_key=True
+    )
+
+    user_id = db.Column(
+        db.String(255),
+        nullable=False
     )
 
     tag = db.Column(

@@ -1,45 +1,74 @@
 <div id="sidebar" class="sidebar">
 
-    <div class="sidebar-header p-3 border-bottom">
+    <div>
 
-        <h5 class="m-0 sidebar-title">
-            Métricas Verdes
-        </h5>
+        <div class="sidebar-header p-3 border-bottom">
 
-        <button
-            id="toggleSidebar"
-            class="btn btn-sm "
-        >
-            ◀
-        </button>
+            <h5 class="m-0 sidebar-title">
+                Métricas Verdes
+            </h5>
+
+            <button
+                id="toggleSidebar"
+                class="btn btn-sm"
+            >
+                ◀
+            </button>
+
+        </div>
+
+        <div class="list-group list-group-flush">
+
+            <a href="{{ url_for('home.home') }}"
+               class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-speedometer2"></i>
+                <span class="menu-text ms-2">Dashboard</span>
+            </a>
+
+            <a href="{{ url_for('planta.listar_plantas') }}"
+               class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-tree"></i>
+                <span class="menu-text ms-2">Plantas</span>
+            </a>
+
+            <a href="{{ url_for('medicion.listar_todas_mediciones') }}"
+               class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-thermometer-half"></i>
+                <span class="menu-text ms-2">Mediciones</span>
+            </a>
+
+            <a href="{{ url_for('alerta.listar_alertas') }}"
+               class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-bell"></i>
+                <span class="menu-text ms-2">Alertas</span>
+            </a>
+
+            <a href="#"
+               class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-file-earmark-text"></i>
+                <span class="menu-text ms-2">Reportes</span>
+            </a>
+
+        </div>
 
     </div>
 
-    <div class="list-group list-group-flush">
+    <div class="sidebar-footer">
 
-        <a href="/" class="list-group-item list-group-item-action border-secondary">
-            <i class="bi bi-speedometer2"></i>
-            <span class="menu-text ms-2">Dashboard</span>
+        <a href="#"
+           class="list-group-item list-group-item-action">
+            <i class="bi bi-gear"></i>
+            <span class="menu-text ms-2">
+                Configuración
+            </span>
         </a>
 
-        <a href="/plantas" class="list-group-item list-group-item-action border-secondary">
-            <i class="bi bi-tree"></i>
-            <span class="menu-text ms-2">Plantas</span>
-        </a>
-
-        <a href="/mediciones" class="list-group-item list-group-item-action border-secondary">
-            <i class="bi bi-thermometer-half"></i>
-            <span class="menu-text ms-2">Mediciones</span>
-        </a>
-
-        <a href="/alertas" class="list-group-item list-group-item-action border-secondary">
-            <i class="bi bi-bell"></i>
-            <span class="menu-text ms-2">Alertas</span>
-        </a>
-
-        <a href="/reportes" class="list-group-item list-group-item-action border-secondary">
-            <i class="bi bi-file-earmark-text"></i>
-            <span class="menu-text ms-2">Reportes</span>
+        <a href="{{ url_for('auth.logout') }}"
+           class="list-group-item list-group-item-action logout-link">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="menu-text ms-2">
+                Cerrar sesión
+            </span>
         </a>
 
     </div>
