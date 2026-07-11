@@ -1,0 +1,168 @@
+<div class="card dashboard-table shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-borderless align-middle">
+
+                <thead class="table-header">
+
+                    <tr>
+
+                        <th>ESPECIE</th>
+                        <th>NOMBRE CIENTÍFICO</th>
+                        <th>DIFICULTAD</th>
+                        <th>CRECIMIENTO</th>
+                        <th>TIPO</th>
+                        <th>ACCIONES</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for especie in especies %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="plant-avatar">
+
+                                    <div
+                                        class="w-100 h-100 d-flex align-items-center justify-content-center bg-success-subtle">
+                                        {% if especie.photo_url %}
+
+                                        <img src="{{ especie.photo_url }}" alt="{{ especie.name }}">
+
+                                        {% else %}
+
+                                        <img src="{{ url_for('static', filename='img/default-plant.png') }}"
+                                            alt="Sin imagen">
+
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="fw-semibold">
+
+                                        {{ especie.name }}
+
+                                    </div>
+
+                                    <small class="text-muted">
+
+                                        ID: {{ especie.id }}
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            {{ especie.scientific_name }}
+
+                        </td>
+
+                        <td>
+
+                            {% if especie.difficulty_level == "Fácil" %}
+
+                            <span class="badge bg-success-subtle text-success">
+                                {{ especie.difficulty_level }}
+                            </span>
+
+                            {% elif especie.difficulty_level == "Media" %}
+
+                            <span class="badge bg-warning-subtle text-warning">
+                                {{ especie.difficulty_level }}
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger-subtle text-danger">
+                                {{ especie.difficulty_level }}
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-info-subtle text-info">
+
+                                {{ especie.expected_growth_rate }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {% if especie.user_id %}
+
+                            <span class="badge bg-success-subtle text-success">
+                                Personalizada
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-secondary-subtle text-secondary">
+                                Global
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <div class="d-flex gap-2">
+
+                                <a href="{{ url_for('especie.detalle_especie', especie_id=especie.id) }}"
+                                    class="btn btn-sm btn-light">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                {% if especie.user_id %}
+
+                                <form action="{{ url_for('especie.eliminar_especie', especie_id=especie.id) }}"
+                                    method="POST">
+
+                                    <button class="btn btn-sm btn-light">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+
+                                </form>
+
+                                {% endif %}
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

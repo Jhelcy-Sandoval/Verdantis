@@ -1,0 +1,149 @@
+<div class="component h-100">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <span>
+
+            Últimas inspecciones
+
+        </span>
+
+        <a href="{{ url_for('planta.listar_plantas') }}"
+           class="text-decoration-none">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Planta</th>
+                        <th>Fecha</th>
+                        <th>Salud</th>
+                        <th>Desarrollo</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for inspeccion in dashboard.ultimas_inspecciones %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="d-flex align-items-center gap-2">
+
+                                <div class="plant-avatar">
+
+                                    {% if inspeccion.planta.photo_url %}
+
+                                    <img
+                                        src="{{ inspeccion.planta.photo_url }}"
+                                        alt="{{ inspeccion.planta.common_name }}">
+
+                                    {% else %}
+
+                                    <img
+                                        src="{{ url_for('static', filename='img/default-plant.png') }}"
+                                        alt="Sin imagen">
+
+                                    {% endif %}
+
+                                </div>
+
+                                <div>
+
+                                    <div class="fw-semibold">
+
+                                        {{ inspeccion.planta.common_name }}
+
+                                    </div>
+
+                                    <small class="text-muted">
+
+                                        {{ inspeccion.planta.tag }}
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            {{ inspeccion.fecha_registro.strftime("%d/%m/%Y") }}
+
+                            <br>
+
+                            <small class="text-muted">
+
+                                {{ inspeccion.fecha_registro.strftime("%H:%M") }}
+
+                            </small>
+
+                        </td>
+
+                        <td>
+
+                            {% if inspeccion.salud == "Óptima" %}
+
+                            <span class="badge bg-success-subtle text-success">
+
+                                {{ inspeccion.salud }}
+
+                            </span>
+
+                            {% elif inspeccion.salud == "Atención" %}
+
+                            <span class="badge bg-warning-subtle text-warning">
+
+                                {{ inspeccion.salud }}
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger-subtle text-danger">
+
+                                {{ inspeccion.salud }}
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {{ inspeccion.desarrollo }}%
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,257 @@
+{% if ultima_medicion %}
+
+<div class="d-flex flex-wrap gap-2">
+
+    <div class="card shadow-sm border-0 w-100">
+
+        <div class="card-body">
+
+            <h5 class="fw-semibold mb-3">
+                Resumen de la última medición
+            </h5>
+
+            <div class="mb-3 d-flex justify-content-between">
+
+                <div>
+                    <div class="fw-semibold">
+                        {{ ultima_medicion.locations.name }}
+                    </div>
+
+                    <small class="text-muted">
+                        {{ ultima_medicion.fecha_registro.strftime("%d %b %Y, %H:%M") }}
+                    </small>
+                </div>
+
+                <div>
+                    {% if ultima_medicion.estado == "Óptimo" %}
+
+                    <span class="badge bg-success-subtle text-success">
+
+                        {{ ultima_medicion.estado }}
+
+                    </span>
+
+                    {% elif ultima_medicion.estado == "Atención" %}
+
+                    <span class="badge bg-warning-subtle text-warning">
+
+                        {{ ultima_medicion.estado }}
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-danger-subtle text-danger">
+
+                        {{ ultima_medicion.estado }}
+
+                    </span>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <table class="table table-sm align-middle mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Parámetro</th>
+                        <th>Valor</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <i class="bi bi-thermometer-half me-2"></i>
+                            Temperatura
+                        </td>
+
+                        <td>
+                            {{ ultima_medicion.temperatura }} °C
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <i class="bi bi-droplet me-2"></i>
+                            Humedad
+                        </td>
+
+                        <td>
+                            {{ ultima_medicion.humedad }} %
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <i class="bi bi-graph-up-arrow me-2"></i>
+                            Desarrollo
+                        </td>
+
+                        <td>
+                            {{ ultima_medicion.desarrollo }} %
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="text-center mt-3">
+
+                <a href="{{ url_for('mediciones.detalle_medicion', medicion_id=ultima_medicion.id) }}"
+                    class="text-success text-decoration-none fw-semibold">
+
+                    Ver detalle completo
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm border-0 w-100">
+
+        <div class="card-body">
+
+            <h5 class="fw-semibold mb-3">
+                Plantas afectadas
+            </h5>
+
+            <small class="text-muted">
+
+                {{ ultima_medicion.locations.plantas|length }}
+                plantas registradas
+
+            </small>
+
+            <div class="d-flex flex-wrap gap-3 mt-3">
+
+                {% for planta in ultima_medicion.locations.plantas[:4] %}
+
+                <div class="text-center">
+
+                    <div class="plant-avatar mb-2">
+
+                        {% if planta.photo_url %}
+
+                        <img src="{{ planta.photo_url }}" alt="{{ planta.common_name }}">
+
+                        {% else %}
+
+                        <img src="{{ url_for('static', filename='img/default-plant.png') }}">
+
+                        {% endif %}
+
+                    </div>
+
+                    <small>
+                        {{ planta.common_name }}
+                    </small>
+
+                </div>
+
+                {% endfor %}
+
+                {% if ultima_medicion.locations.plantas|length > 4 %}
+
+                <div class="text-center">
+
+                    <div class="plant-avatar d-flex align-items-center justify-content-center bg-light fw-bold">
+
+                        +{{ ultima_medicion.locations.plantas|length - 4 }}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="text-center mt-3">
+
+                <a href="{{ url_for('planta.listar_plantas') }}" class="text-success text-decoration-none fw-semibold">
+
+                    Ver todas las plantas
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm border-0 w-100">
+
+        <div class="card-body">
+
+            <h5 class="fw-semibold mb-3">
+                Acciones rápidas
+            </h5>
+
+            <div class="d-grid gap-2">
+
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#medicionModal">
+
+                    <i class="bi bi-plus-lg me-2"></i>
+
+                    Registrar medición
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="card shadow-sm border-0">
+
+    <div class="card-body text-center py-5">
+
+        <i class="bi bi-clipboard-data fs-1 text-muted"></i>
+
+        <h5 class="mt-3">
+            No hay mediciones registradas
+        </h5>
+
+        <p class="text-muted mb-4">
+            No existen mediciones para la ubicación seleccionada.
+        </p>
+
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#medicionModal">
+
+            <i class="bi bi-plus-lg"></i>
+
+            Registrar primera medición
+
+        </button>
+
+    </div>
+
+</div>
+
+{% endif %}

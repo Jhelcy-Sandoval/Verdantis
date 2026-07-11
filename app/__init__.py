@@ -12,7 +12,8 @@ from app.infrastructure.models.medicion_model import Medicion
 from app.presentation.routes.home_routes import home_bp
 from app.presentation.routes.planta_routes import planta_bp
 from app.presentation.routes.medicion_routes import medicion_bp
-from app.presentation.routes.alerta_routes import alerta_bp
+from app.presentation.routes.especie_routes import especie_bp
+from app.presentation.routes.location_routes import locations_bp
 from app.presentation.routes.auth_routes import auth_bp
 from app.presentation.routes.error_routes import error_bp
 
@@ -62,9 +63,15 @@ def create_app():
         url_prefix="/mediciones"
     )
     
+    
     app.register_blueprint(
-        alerta_bp,
-        url_prefix="/alertas"
+        especie_bp,
+        url_prefix="/especie"
+    )
+    
+    app.register_blueprint(
+        locations_bp,
+        url_prefix="/locations"
     )
 
     app.register_blueprint(

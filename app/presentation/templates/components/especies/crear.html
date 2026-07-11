@@ -1,0 +1,228 @@
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form method="POST" action="{{ url_for('especie.guardar_especie') }}" enctype="multipart/form-data">
+
+            <div class="row g-3">
+
+
+                <div class="col-md-12">
+
+                    <label class="form-label">
+                        Nombre Común
+                    </label>
+
+                    <input type="text" name="name" class="form-control" placeholder="Tomate Cherry" required>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Nombre Científico
+                    </label>
+
+                    <input type="text" name="scientific_name" class="form-control" placeholder="Solanum lycopersicum"
+                        required>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Fotografía de la especie
+                    </label>
+
+                    <input type="file" name="photo" class="form-control" accept="image/*">
+
+                    <small class="text-muted">
+                        Imagen representativa de la especie.
+                    </small>
+
+                </div>
+
+                <div class="col-12">
+
+                    <label class="form-label">
+                        Descripción
+                    </label>
+
+                    <textarea name="description" class="form-control" rows="3"
+                        placeholder="Descripción de la especie..."></textarea>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Humedad Mínima (%)
+                    </label>
+
+                    <input type="number" name="ideal_humidity_min" class="form-control" min="0" max="100">
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Humedad Máxima (%)
+                    </label>
+
+                    <input type="number" name="ideal_humidity_max" class="form-control" min="0" max="100">
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Temperatura Mínima (°C)
+                    </label>
+
+                    <input type="number" step="0.1" name="ideal_temperature_min" class="form-control">
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Temperatura Máxima (°C)
+                    </label>
+
+                    <input type="number" step="0.1" name="ideal_temperature_max" class="form-control">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Tasa de Crecimiento
+                    </label>
+
+                    <select name="expected_growth_rate" class="form-select">
+
+                        <option value="">
+                            Seleccione
+                        </option>
+
+                        <option value="Lento">
+                            Lento
+                        </option>
+
+                        <option value="Medio">
+                            Medio
+                        </option>
+
+                        <option value="Rápido">
+                            Rápido
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Días de Germinación
+                    </label>
+
+                    <input type="number" name="average_germination_days" class="form-control">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Días para Trasplante
+                    </label>
+
+                    <input type="number" name="average_transplant_days" class="form-control">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Exposición Solar
+                    </label>
+
+                    <select name="sunlight_requirement" class="form-select">
+
+                        <option value="">
+                            Seleccione
+                        </option>
+
+                        <option value="Sombra">
+                            Sombra
+                        </option>
+
+                        <option value="Semisombra">
+                            Semisombra
+                        </option>
+
+                        <option value="Sol Directo">
+                            Sol Directo
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Frecuencia de Riego (días)
+                    </label>
+
+                    <input type="number" name="watering_frequency_days" class="form-control">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Nivel de Dificultad
+                    </label>
+
+                    <select name="difficulty_level" class="form-select">
+
+                        <option value="">
+                            Seleccione
+                        </option>
+
+                        <option value="Fácil">
+                            Fácil
+                        </option>
+
+                        <option value="Media">
+                            Media
+                        </option>
+
+                        <option value="Difícil">
+                            Difícil
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end">
+
+                <button type="submit" class="btn btn-success">
+
+                    <i class="bi bi-floppy"></i>
+
+                    Guardar Especie
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,167 @@
+<div class="table-responsive">
+
+    <table class="table table-borderless align-middle">
+
+        <thead class="table-header">
+
+            <tr>
+                <th>FOTO</th>
+                <th>FECHA</th>
+                <th>ALTURA</th>
+                <th>HOJAS</th>
+                <th>FLORES</th>
+                <th>FRUTOS</th>
+                <th>DIÁMETRO</th>
+                <th>HUMEDAD</th>
+                <th>DESARROLLO</th>
+                <th>SALUD</th>
+                <th>ACCIONES</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for medicion in mediciones %}
+
+            <tr>
+                <td>
+                    <div class="plant-avatar">
+
+                        {% if medicion.foto_url %}
+
+                        <img src="{{ medicion.foto_url }}" alt="foto medicion">
+
+                        {% else %}
+
+                        <img src="{{ url_for('static', filename='img/default-plant.png') }}" alt="Sin imagen">
+
+                        {% endif %}
+
+                    </div>
+                </td>
+                <td>
+
+                    <div>
+
+                        {{ medicion.fecha_registro.strftime("%d/%m/%Y") }}
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        {{ medicion.fecha_registro.strftime("%H:%M") }}
+
+                    </small>
+
+                </td>
+
+                <td>
+
+                    {{ medicion.altura }} cm
+
+                </td>
+
+                <td>
+
+                    {{ medicion.numero_hojas }}
+
+                </td>
+
+                <td>
+
+                    {{ medicion.numero_flores }}
+
+                </td>
+
+                <td>
+
+                    {{ medicion.numero_frutos }}
+
+                </td>
+
+                <td>
+
+                    {{ medicion.diametro_tallo }} mm
+
+                </td>
+
+                <td>
+
+                    {{ medicion.humedad_sustrato }} %
+
+                </td>
+
+                <td>
+
+                    {{ medicion.desarrollo }} %
+
+                </td>
+
+                <td>
+
+                    {% if medicion.salud == "Óptima" %}
+
+                    <span class="badge bg-success-subtle text-success">
+
+                        {{ medicion.salud }}
+
+                    </span>
+
+                    {% elif medicion.salud == "Atención" %}
+
+                    <span class="badge bg-warning-subtle text-warning">
+
+                        {{ medicion.salud }}
+
+                    </span>
+
+                    {% elif medicion.salud == "Crítica" %}
+
+                    <span class="badge bg-danger-subtle text-danger">
+
+                        {{ medicion.salud }}
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-secondary-subtle text-secondary">
+
+                        {{ medicion.salud }}
+
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <div class="d-flex gap-2">
+
+                        <form action="{{ url_for('planta.eliminar_medicion_planta', medicion_id=medicion.id) }}"
+                            method="POST">
+
+                            <button class="btn btn-sm btn-light" onclick="return confirm('¿Eliminar esta inspección?')">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

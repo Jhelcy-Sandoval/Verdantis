@@ -1,0 +1,128 @@
+<div class="table-responsive">
+
+    <table class="table table-borderless align-middle">
+
+        <thead class="table-header">
+
+            <tr>
+
+                <th>PLANTA</th>
+                <th>ESPECIE</th>
+                <th>UBICACIÓN</th>
+                <th>ESTADO</th>
+                <th>FECHA DE SIEMBRA</th>
+                <th>ÚLTIMA MEDICIÓN</th>
+                <th>ACCIONES</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for planta in plantas %}
+
+            <tr>
+
+                <td>
+
+                    <div class="d-flex align-items-center gap-3">
+
+                        <div class="plant-avatar">
+
+                            {% if planta.photo_url %}
+
+                            <img src="{{ planta.photo_url }}" alt="{{ planta.tag }}">
+
+                            {% else %}
+
+                            <img src="{{ url_for('static', filename='img/default-plant.png') }}" alt="Sin imagen">
+
+                            {% endif %}
+
+                        </div>
+
+                        <div>
+
+                            <div class="fw-semibold">
+
+                                {{ planta.tag }}
+
+                            </div>
+
+                            <small class="text-muted">
+
+                                {{ planta.id }}
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    {{ planta.especie.name }}
+
+                </td>
+
+                <td>
+
+                    {{ planta.location.name }}
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-success-subtle text-success">
+
+                        {{ planta.status }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    {{ planta.germination_date }}
+
+                </td>
+
+                <td>
+
+                    Hoy
+
+                </td>
+
+                <td>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="{{ url_for('planta.detalle_planta', planta_id=planta.id) }}"
+                            class="btn btn-sm btn-light">
+                            <i class="bi bi-eye"></i>
+                        </a>
+
+                        <form action="{{ url_for('planta.eliminar_planta', planta_id=planta.id) }}" method="POST">
+
+                            <button class="btn btn-sm btn-light">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

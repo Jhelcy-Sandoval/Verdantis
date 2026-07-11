@@ -4,23 +4,43 @@ class Planta(db.Model):
 
     __tablename__ = "plantas"
 
-    id = db.Column(
-        db.Integer,
-        primary_key=True
-    )
+    id = db.Column(db.Integer, primary_key=True)
 
-    user_id = db.Column(
-        db.String(255),
-        nullable=False
-    )
+    user_id = db.Column(db.String(255), nullable=False)
 
     tag = db.Column(
         db.String(50),
+        nullable=False,
+        unique=True
+    )
+
+    common_name = db.Column(
+        db.String(100),
         nullable=False
     )
 
-    species = db.Column(
-        db.String(100),
+    variety = db.Column(
+        db.String(100)
+    )
+
+    status = db.Column(
+        db.String(50),
+        default="Crecimiento"
+    )
+
+    location_id = db.Column(
+        db.Integer,
+        db.ForeignKey("locations.id")
+    )
+    
+    photo_url = db.Column(
+        db.Text,
+        nullable=True
+    )
+    
+    especie_id = db.Column(
+        db.Integer,
+        db.ForeignKey("especies.id"),
         nullable=False
     )
 
@@ -32,10 +52,9 @@ class Planta(db.Model):
     initial_conditions = db.Column(
         db.Text
     )
-
+    
     mediciones = db.relationship(
-        "Medicion",
-        backref="planta",
-        lazy=True,
+        "MedicionPlanta",
+        back_populates="planta",
         cascade="all, delete-orphan"
     )

@@ -8,10 +8,7 @@
                 Métricas Verdes
             </h5>
 
-            <button
-                id="toggleSidebar"
-                class="btn btn-sm"
-            >
+            <button id="toggleSidebar" class="btn btn-sm">
                 ◀
             </button>
 
@@ -19,34 +16,35 @@
 
         <div class="list-group list-group-flush">
 
-            <a href="{{ url_for('home.home') }}"
-               class="list-group-item list-group-item-action border-secondary">
+            <a href="{{ url_for('home.home') }}" class="list-group-item list-group-item-action border-secondary">
                 <i class="bi bi-speedometer2"></i>
                 <span class="menu-text ms-2">Dashboard</span>
             </a>
 
             <a href="{{ url_for('planta.listar_plantas') }}"
-               class="list-group-item list-group-item-action border-secondary">
+                class="list-group-item list-group-item-action border-secondary">
                 <i class="bi bi-tree"></i>
                 <span class="menu-text ms-2">Plantas</span>
             </a>
 
-            <a href="{{ url_for('medicion.listar_todas_mediciones') }}"
-               class="list-group-item list-group-item-action border-secondary">
+            <a href="{{ url_for('especie.listar_especies') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-folder"></i>
+                <span class="menu-text ms-2">Especies</span>
+            </a>
+
+            <a href="{{ url_for('locations.listar_locations') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-house"></i>
+                <span class="menu-text ms-2">Ubicaciones</span>
+            </a>
+
+            <a href="{{ url_for('mediciones.listar_mediciones_ubicaciones') }}"
+                class="list-group-item list-group-item-action border-secondary">
                 <i class="bi bi-thermometer-half"></i>
-                <span class="menu-text ms-2">Mediciones</span>
-            </a>
-
-            <a href="{{ url_for('alerta.listar_alertas') }}"
-               class="list-group-item list-group-item-action border-secondary">
-                <i class="bi bi-bell"></i>
-                <span class="menu-text ms-2">Alertas</span>
-            </a>
-
-            <a href="#"
-               class="list-group-item list-group-item-action border-secondary">
-                <i class="bi bi-file-earmark-text"></i>
-                <span class="menu-text ms-2">Reportes</span>
+                <span class="menu-text ms-2">
+                    Monitoreo
+                </span>
             </a>
 
         </div>
@@ -55,16 +53,7 @@
 
     <div class="sidebar-footer">
 
-        <a href="#"
-           class="list-group-item list-group-item-action">
-            <i class="bi bi-gear"></i>
-            <span class="menu-text ms-2">
-                Configuración
-            </span>
-        </a>
-
-        <a href="{{ url_for('auth.logout') }}"
-           class="list-group-item list-group-item-action logout-link">
+        <a href="{{ url_for('auth.logout') }}" class="list-group-item list-group-item-action logout-link">
             <i class="bi bi-box-arrow-right"></i>
             <span class="menu-text ms-2">
                 Cerrar sesión
@@ -72,5 +61,4 @@
         </a>
 
     </div>
-
 </div>

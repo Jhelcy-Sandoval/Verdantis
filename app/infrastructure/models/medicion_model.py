@@ -11,10 +11,15 @@ class Medicion(db.Model):
         db.Integer,
         primary_key=True
     )
+    
+    user_id = db.Column(
+        db.String(255),
+        nullable=True
+    )
 
-    planta_id = db.Column(
+    location_id = db.Column(
         db.Integer,
-        db.ForeignKey("plantas.id"),
+        db.ForeignKey("locations.id"),
         nullable=False
     )
 
@@ -27,10 +32,11 @@ class Medicion(db.Model):
         db.Float,
         nullable=False
     )
-
-    desarrollo = db.Column(
-        db.Float,
-        nullable=False
+    
+    estado = db.Column(
+        db.String(20),
+        nullable=False,
+        default="Óptimo"
     )
 
     observaciones = db.Column(
@@ -41,4 +47,10 @@ class Medicion(db.Model):
         db.DateTime,
         default=datetime.utcnow,
         nullable=False
+    )
+    
+    locations = db.relationship(
+        "Location",
+        backref="mediciones",
+        lazy=True
     )

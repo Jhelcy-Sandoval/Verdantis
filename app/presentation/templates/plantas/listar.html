@@ -11,195 +11,26 @@ Plantas | Métricas Verdes
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
-            <h1 class="fw-bold">
-                🌱 Gestión de Plantas
-            </h1>
+            <h2 class="fw-bold ">
+                Plantas
+            </h2>
 
             <p class="text-muted mb-0">
-                Administración de especies registradas.
+                Consulta y gestiona todas las plantas registradas en el vivero.
             </p>
         </div>
 
     </div>
 
-    <!-- FORMULARIO -->
-
-    <div class="card shadow-sm mb-4">
-
-        <div class="card-header">
-            Registrar Planta
-        </div>
-
-        <div class="card-body">
-
-            <form
-                action="{{ url_for('planta.crear_planta') }}"
-                method="POST"
-            >
-
-                <div class="row">
-
-                    <div class="col-md-4 mb-3">
-
-                        <label class="form-label">
-                            Tag
-                        </label>
-
-                        <input
-                            type="text"
-                            name="tag"
-                            class="form-control"
-                            required
-                        >
-
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-
-                        <label class="form-label">
-                            Especie
-                        </label>
-
-                        <input
-                            type="text"
-                            name="species"
-                            class="form-control"
-                            required
-                        >
-
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-
-                        <label class="form-label">
-                            Fecha de Germinación
-                        </label>
-
-                        <input
-                            type="date"
-                            name="germination_date"
-                            class="form-control"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-                <div class="mb-3">
-
-                    <label class="form-label">
-                        Condiciones Iniciales
-                    </label>
-
-                    <textarea
-                        name="initial_conditions"
-                        class="form-control"
-                        rows="4"
-                    ></textarea>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="btn btn-success"
-                >
-                    Guardar Planta
-                </button>
-
-            </form>
-
-        </div>
-
+    <div>
+        {% include "components/plantas/card.html" %}
     </div>
 
-    <!-- TABLA -->
-
-    <div class="card shadow-sm">
-
-        <div class="card-header">
-            Plantas Registradas
-        </div>
-
-        <div class="card-body">
-
-            <div class="table-responsive">
-
-                <table class="table table-hover align-middle">
-
-                    <thead>
-
-                        <tr>
-                            <th>ID</th>
-                            <th>Tag</th>
-                            <th>Especie</th>
-                            <th>Germinación</th>
-                            <th>Acciones</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {% for planta in plantas %}
-
-                        <tr>
-
-                            <td>
-                                {{ planta.id }}
-                            </td>
-
-                            <td>
-                                {{ planta.tag }}
-                            </td>
-
-                            <td>
-                                {{ planta.species }}
-                            </td>
-
-                            <td>
-                                {{ planta.germination_date }}
-                            </td>
-
-                            <td>
-
-                                <a
-                                    href="{{ url_for('planta.detalle_planta', planta_id=planta.id) }}"
-                                    class="btn btn-primary btn-sm"
-                                >
-                                    Ver
-                                </a>
-
-                                <form
-                                    action="{{ url_for('planta.eliminar_planta', planta_id=planta.id) }}"
-                                    method="POST"
-                                    class="d-inline"
-                                >
-
-                                    <button
-                                        type="submit"
-                                        class="btn btn-danger btn-sm"
-                                    >
-                                        Eliminar
-                                    </button>
-
-                                </form>
-
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
+    <div>
+        {% include "components/plantas/table.html" %}
     </div>
+
+    {% include "components/plantas/modal.html" %}
 
 </div>
 

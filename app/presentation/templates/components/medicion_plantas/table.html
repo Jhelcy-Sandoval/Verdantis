@@ -1,0 +1,121 @@
+<div class="card dashboard-table shadow-sm">
+
+    <div class="card-body">
+
+        <form method="GET" class="d-flex align-items-center mb-4 flex-wrap gap-3">
+
+            <div class="d-flex justify-content-end w-100 gap-2">
+
+                <button type="button" class="btn btn-success agregar_medicion_planta" data-bs-toggle="modal"
+                    data-bs-target="#medicionPlModal">
+
+                    <i class="bi bi-plus-lg"></i>
+
+                    Registrar inspección
+
+                </button>
+
+                <button type="button" id="gridMedplViewBtn" class="btn btn-light">
+                    <i class="bi bi-grid"></i>
+                </button>
+
+                <button type="button" id="listMedplViewBtn" class="btn btn-success">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a href="{{ url_for('planta.detalle_planta', planta_id=planta.id) }}" class="btn btn-outline-secondary">
+
+                    <i class="bi bi-x-circle"></i>
+
+                    Limpiar
+
+                </a>
+
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between md:flex-nowrap gap-2 w-100">
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text" name="search" class="form-control" placeholder="Buscar planta..."
+                        value="{{ request.args.get('search', '') }}">
+
+                </div>
+
+                <select name="salud" class="form-select filter-select">
+
+                    <option value="" {% if not request.args.get('salud') %}selected{% endif %}>
+                        Salud: Todas
+                    </option>
+
+                    <option value="Óptima" {% if request.args.get('salud')=='Óptima' %}selected{% endif %}>
+                        Óptima
+                    </option>
+
+                    <option value="Atención" {% if request.args.get('salud')=='Atención' %}selected{% endif %}>
+                        Atención
+                    </option>
+
+                    <option value="Crítica" {% if request.args.get('salud')=='Crítica' %}selected{% endif %}>
+                        Crítica
+                    </option>
+
+                </select>
+
+                <select name="plagas" class="form-select filter-select">
+
+                    <option value="" {% if not request.args.get('plagas') %}selected{% endif %}>
+                        Plagas: Todas
+                    </option>
+
+                    <option value="True" {% if request.args.get('plagas')=='True' %}selected{% endif %}>
+                        Con plagas
+                    </option>
+
+                    <option value="False" {% if request.args.get('plagas')=='False' %}selected{% endif %}>
+                        Sin plagas
+                    </option>
+
+                </select>
+
+                <select name="enfermedad" class="form-select filter-select">
+
+                    <option value="" {% if not request.args.get('enfermedad') %}selected{% endif %}>
+                        Enfermedad: Todas
+                    </option>
+
+                    <option value="True" {% if request.args.get('enfermedad')=='True' %}selected{% endif %}>
+                        Con enfermedad
+                    </option>
+
+                    <option value="False" {% if request.args.get('enfermedad')=='False' %}selected{% endif %}>
+                        Sin enfermedad
+                    </option>
+
+                </select>
+
+                <button type="submit" class="btn btn-light">
+
+                    <i class="bi bi-funnel"></i>
+
+                    Filtrar
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <div id="medicionesPlantaListView">
+            {% include "components/medicion_plantas/table_view.html" %}
+        </div>
+
+        <div id="medicionesPlantaGridView" class="d-none">
+            {% include "components/medicion_plantas/table_grid.html" %}
+        </div>
+
+    </div>
+
+</div>

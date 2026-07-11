@@ -1,0 +1,570 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+{{ especie.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="d-flex flex-wrap g-2 justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">
+                    Detalle de la especie
+                </h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 ">
+                        <li class="breadcrumb-item">
+
+                            <a href="{{ url_for('especie.listar_especies') }}" class="text-decoration-none">
+                                Especies
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{ especie.name }}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-xl-9">
+
+            <div class="component mb-4">
+
+                <div class="card-body">
+
+                    <div class="row ">
+
+                        <div class="col-lg-4 plant-detail-image">
+
+                            {% if especie.photo_url %}
+
+                            <img src="{{ especie.photo_url }}" alt="{{ especie.name }}">
+
+                            {% else %}
+
+                            <img src="{{ url_for('static', filename='img/default-plant.png') }}" alt="Sin imagen">
+
+                            {% endif %}v
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="d-flex align-items-center gap-3 mb-2">
+
+                                <h2 class="fw-bold mb-0">
+                                    {{ especie.name }}
+                                </h2>
+
+                                {% if especie.difficulty_level == "Fácil" %}
+
+                                <span class="badge bg-success-subtle text-success">
+                                    {{ especie.difficulty_level }}
+                                </span>
+
+                                {% elif especie.difficulty_level == "Media" %}
+
+                                <span class="badge bg-warning-subtle text-warning">
+                                    {{ especie.difficulty_level }}
+                                </span>
+
+                                {% elif especie.difficulty_level == "Difícil" %}
+
+                                <span class="badge bg-danger-subtle text-danger">
+                                    {{ especie.difficulty_level }}
+                                </span>
+
+                                {% endif %}
+
+                            </div>
+
+                            <p class="text-muted fst-italic mb-3">
+                                {{ especie.scientific_name }}
+                            </p>
+
+                            <p>
+                                {{ especie.description }}
+                            </p>
+
+                            <hr>
+
+                            <div class="row g-3">
+                                <div class="col-md-3">
+
+                                    <div class="d-flex align-items-center gap-3">
+
+                                        <i class="bi bi-backpack2"></i>
+
+                                        <div class="metric-card flex-grow-1">
+
+                                            <small class="text-muted">
+                                                Germinación
+                                            </small>
+
+                                            <h6 class="mb-0">
+                                                {{ especie.average_germination_days }} días
+                                            </h6>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center gap-3">
+
+                                        <i class="bi bi-backpack2"></i>
+
+                                        <div class="metric-card flex-grow-1">
+
+                                            <small class="text-muted">
+                                                Trasplante
+                                            </small>
+
+                                            <h6>
+                                                {{ especie.average_transplant_days }} días
+                                            </h6>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="bi bi-backpack2"></i>
+                                        <div class="metric-card flex-grow-1">
+                                            <small class="text-muted">
+                                                Crecimiento
+                                            </small>
+
+                                            <h6>
+                                                {{ especie.expected_growth_rate }}
+                                            </h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="bi bi-backpack2"></i>
+                                        <div class="metric-card flex-grow-1">
+                                            <small class="text-muted">
+                                                Crecimiento
+                                            </small>
+
+                                            <h6>
+                                                {{ especie.expected_growth_rate }}
+                                            </h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component mb-4">
+
+                <div class="card-header fw-bold mb-2">
+                    Requerimientos de cultivo
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row g-4">
+
+                        <div class="col-md-3 p-3">
+
+                            <div class="metric-card">
+
+                                <i class="bi bi-brightness-high me-2"></i>
+
+                                <small class="text-muted">
+                                    Exposición solar
+                                </small>
+
+                                <h6 class="mb-0">
+                                    {{ especie.sunlight_requirement }}
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-3">
+
+                            <div class="metric-card">
+
+                                <i class="bi bi-droplet-half me-2"></i>
+
+                                <small class="text-muted">
+                                    Frecuencia de riego
+                                </small>
+
+                                <h6 class="mb-0">
+
+                                    Cada {{ especie.watering_frequency_days }} días
+
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-3">
+
+                            <div class="metric-card">
+
+                                <i class="bi bi-droplet me-2"></i>
+
+                                <small class="text-muted">
+                                    Humedad
+                                </small>
+
+                                <h6 class="mb-0">
+                                    {{ especie.ideal_humidity_min }}% - {{ especie.ideal_humidity_max }}%
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-3">
+
+                            <div class="metric-card">
+
+                                <i class="bi bi-thermometer-half me-2"></i>
+
+                                <small class="text-muted">
+                                    Temperatura
+                                </small>
+
+                                <h6 class="mb-0">
+                                    {{ especie.ideal_temperature_min }}°C -
+                                    {{ especie.ideal_temperature_max }}°C
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component mb-4">
+
+                <div class="card-header d-flex justify-content-between">
+
+                    <span class="fw-bold mb-2">Plantas de esta especie</span>
+
+                    <span class="badge bg-success">
+
+                        {{ especie.plantas|length }}
+
+                    </span>
+
+                </div>
+
+                <div class="card-body">
+
+                    {% if especie.plantas %}
+
+                    <div class="row g-3">
+
+                        {% for planta in especie.plantas[:6] %}
+
+                        <div class="col-md-4">
+
+                            <div class="border rounded p-3">
+
+                                <div class="plant-avatar mx-auto mb-2">
+                                    {% if planta.photo_url %}
+
+                                    <img src="{{ planta.photo_url }}" alt="{{ planta.tag }}">
+
+                                    {% else %}
+
+                                    <img src="{{ url_for('static', filename='img/default-plant.png') }}"
+                                        alt="Sin imagen">
+
+                                    {% endif %}
+                                </div>
+
+                                <div class="fw-semibold text-break">
+
+                                    {{ planta.common_name }}
+
+                                </div>
+
+                                <small class="text-muted">
+
+                                    {{ planta.tag }}
+
+                                </small>
+
+                                <div class="mt-2 text-break">
+
+                                    {{ planta.location.name }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="text-center py-4">
+
+                        <i class="bi bi-tree fs-1 text-muted"></i>
+
+                        <p class="text-muted mt-3">
+
+                            No hay plantas registradas para esta especie.
+
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3">
+
+            <div class="component mb-4">
+
+                <div class="card-header fw-bold">
+                    Información general
+                </div>
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <span class="text-muted">
+                            Identificador
+                        </span>
+
+                        <span class="fw-semibold">
+                            #{{ especie.id }}
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <span class="text-muted">
+                            Tipo de especie
+                        </span>
+
+                        {% if especie.user_id %}
+
+                        <span class="badge bg-info-subtle text-info">
+                            Personalizada
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-success-subtle text-success">
+                            Catálogo del sistema
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2">
+
+                        <span class="text-muted">
+                            Plantas registradas
+                        </span>
+
+                        <span class="fw-semibold">
+                            {{ plantas|length }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component mb-4">
+
+                <div class="card-header fw-bold">
+                    Estadísticas
+                </div>
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Plantas registradas</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ plantas|length }}
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Crecimiento esperado</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ especie.expected_growth_rate }}
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Dificultad</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ especie.difficulty_level }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component mb-4">
+
+                <div class="card-header fw-bold">
+                    Resumen de cultivo
+                </div>
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Temperatura ideal</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ especie.ideal_temperature_min }}°C - {{ especie.ideal_temperature_max }}°C
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Humedad ideal</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ especie.ideal_humidity_min }}% - {{ especie.ideal_humidity_max }}%
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Iluminación</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            {{ especie.sunlight_requirement }}
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center py-2">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span>Riego recomendado</span>
+
+                        </div>
+
+                        <span class="fw-semibold">
+                            Cada {{ especie.watering_frequency_days }} días
+                        </span>
+
+                    </div>
+                    <div class="py-2">
+
+                        <div class="d-flex align-items-center gap-2 mb-2">
+
+                            <i class="bi bi-calendar-check text-success"></i>
+
+                            <span class="fw-semibold">
+                                Tiempo de desarrollo
+                            </span>
+
+                        </div>
+
+                        <p class="text-muted mb-0 small">
+
+                            Esta especie suele germinar en
+                            <strong>{{ especie.average_germination_days }} días</strong>
+                            y se recomienda realizar el trasplante alrededor de los
+                            <strong>{{ especie.average_transplant_days }} días</strong>,
+                            siempre que las condiciones de crecimiento sean adecuadas.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

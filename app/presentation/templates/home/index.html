@@ -9,123 +9,68 @@ Dashboard | Métricas Verdes
 <div class="container-fluid">
 
     <div class="mb-4">
-        <h1 class="display-6 fw-bold">
-            🌱 Dashboard
-        </h1>
+
+        <h2 class="display-6 fw-bold">
+            Resumen del vivero
+        </h2>
 
         <p class="text-muted">
-            Resumen general del sistema de monitoreo ambiental.
+            Bienvenid@, aquí tienes el estado general de tu vivero.
         </p>
+
+    </div>
+
+    {% include "components/home/card.html" %}
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-4">
+
+            {% include "components/home/pie.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/location_status.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/environment_average.html" %}
+
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-8">
+
+            {% include "components/home/garden_distribution.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/risk_alerts.html" %}
+
+        </div>
+
     </div>
 
     <div class="row g-4">
 
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-muted">
-                        Total de Plantas
-                    </h6>
+        <div class="col-xl-6">
 
-                    <h2 class="fw-bold">
-                        {{ total_plantas|default(20) }}
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-muted">
-                        Temperatura Promedio
-                    </h6>
-
-                    <h2 class="fw-bold">
-                        {{ temperatura_promedio|default('18.5') }} °C
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-muted">
-                        Humedad Promedio
-                    </h6>
-
-                    <h2 class="fw-bold">
-                        {{ humedad_promedio|default('67') }} %
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-muted">
-                        Alertas Activas
-                    </h6>
-
-                    <h2 class="fw-bold text-warning">
-                        {{ total_alertas|default(2) }}
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row mt-4">
-
-        <div class="col-lg-8">
-
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    Desarrollo de Plantas
-                </div>
-
-                <div class="card-body">
-
-                    <div
-                        class="d-flex justify-content-center align-items-center"
-                        style="height:300px;"
-                    >
-                        <span class="text-muted">
-                            Aquí irá el gráfico de crecimiento
-                        </span>
-                    </div>
-
-                </div>
-            </div>
+            {% include "components/home/plant_inspections.html" %}
 
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-xl-6">
 
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    Últimas Alertas
-                </div>
-
-                <div class="card-body">
-
-                    <ul class="list-group">
-
-                        <li class="list-group-item">
-                            Humedad baja detectada
-                        </li>
-
-                        <li class="list-group-item">
-                            Temperatura elevada
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
+            {% include "components/home/recent_activity.html" %}
 
         </div>
 
