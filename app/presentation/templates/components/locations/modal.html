@@ -1,0 +1,40 @@
+<div
+    class="modal fade"
+    id="locationModal"
+    tabindex="-1"
+    aria-labelledby="locationModalLabel"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="locationModalLabel"
+                >
+                    Registrar ubicación
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                {% include "components/locations/crear.html" %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Ubicaciones | Métricas Verdes
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+                Ubicaciones
+            </h2>
+
+            <p class="text-muted mb-0">
+                Consulta y gestiona todas las ubicaciones registradas.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="card dashboard-table shadow-sm">
+
+       <div>
+            {% include "components/locations/table.html" %}
+       </div>
+
+    </div>
+
+    {% include "components/locations/modal.html" %}
+</div>
+
+{% endblock %}

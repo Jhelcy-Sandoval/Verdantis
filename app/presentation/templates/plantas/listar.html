@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Plantas | Métricas Verdes
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold ">
+                Plantas
+            </h2>
+
+            <p class="text-muted mb-0">
+                Consulta y gestiona todas las plantas registradas en el vivero.
+            </p>
+        </div>
+
+    </div>
+
+    <div>
+        {% include "components/plantas/card.html" %}
+    </div>
+
+    <div>
+        {% include "components/plantas/table.html" %}
+    </div>
+
+    {% include "components/plantas/modal.html" %}
+
+</div>
+
+{% endblock %}

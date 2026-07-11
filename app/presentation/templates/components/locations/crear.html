@@ -1,0 +1,66 @@
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <form
+            method="POST"
+            action="{{ url_for('locations.guardar_ubicacion') }}"
+        >
+
+            <div class="row g-3">
+
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Invernadero A"
+                        required
+                    >
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Descripción
+                    </label>
+
+                    <input
+                        type="text"
+                        name="description"
+                        class="form-control"
+                        placeholder="Lugar calido, luz directa, seco"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end">
+
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+
+                    <i class="bi bi-floppy"></i>
+
+                    Guardar ubicación
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

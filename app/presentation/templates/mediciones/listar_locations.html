@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Mediciones | Métricas Verdes
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+
+        <h2 class="fw-bold">
+            Mediciones Ambientales
+        </h2>
+
+        <p class="text-muted">
+            las mediciones realizadas en una ubicación afectan a todas las plantas que se encuentran en ella
+        </p>
+
+    </div>
+
+    <div>
+        {% include "components/mediciones/card.html" %}
+    </div>
+
+    <div class="row g-4">
+
+
+        <div class="col-lg-8">
+
+            {% include "components/mediciones/table.html" %}
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+            {% include "components/mediciones/article.html" %}
+
+        </div>
+
+    </div>
+
+    {% include "components/mediciones/modal.html" %}
+
+</div>
+
+{% endblock %}

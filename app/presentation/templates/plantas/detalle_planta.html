@@ -1,0 +1,426 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+{{ planta.common_name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex flex-wrap g-2 justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <div class="d-flex align-items-center gap-2">
+
+                <h2 class="fw-bold mb-0">
+                    {{ planta.common_name }}
+                </h2>
+
+                <span class="badge bg-success-subtle text-success">
+                    {{ planta.tag }}
+                </span>
+
+            </div>
+
+            <p class="text-muted mb-0">
+                Monitorea la salud y el rendimiento de esta planta
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-xl-9">
+
+            <div class="component mb-4">
+
+                <div class="card-body">
+
+                    <div class="row g-4">
+
+                        <div class="col-lg-4 plant-detail-image">
+
+                            {% if planta.photo_url %}
+
+                            <img src="{{ planta.photo_url }}" class="" alt="{{ planta.tag }}">
+
+                            {% else %}
+
+                            <img src="{{ url_for('static', filename='img/default-plant.png') }}" class=""
+                                alt="Sin imagen">
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="row g-4">
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Nombre común
+                                    </small>
+
+                                    <div class="fw-semibold">
+                                        {{ planta.common_name }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Código
+                                    </small>
+
+                                    <div>
+                                        {{ planta.tag }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Especie
+                                    </small>
+
+                                    <div>
+                                        {{ planta.especie.name }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Estado
+                                    </small>
+
+                                    <div>
+                                        <span class="badge bg-success-subtle text-success">
+                                            {{ planta.status }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Ubicación
+                                    </small>
+
+                                    <div>
+                                        {{ planta.location.name }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <small class="text-muted">
+                                        Fecha siembra
+                                    </small>
+
+                                    <div>
+                                        {{ planta.germination_date }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <small class="text-muted">
+                                        Condiciones iniciales
+                                    </small>
+
+                                    <div>
+                                        {{ planta.initial_conditions }}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+                {% include "components/medicion_plantas/table.html" %}
+            </div>
+
+        </div>
+
+        <div class="col-xl-3">
+
+            <div class="component health-card mb-4">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <h5 class="mb-0">
+                            Ultima medicion
+                        </h5>
+
+                        <span class="badge bg-success-subtle text-success">
+                            {{ ultima_medicion.salud }}
+                        </span>
+
+                    </div>
+
+                    <div class="text-center mb-4">
+
+                        <div class="display-4 fw-bold">
+                            {{ ultima_medicion.desarrollo }} %
+                        </div>
+
+                        <div class="text-muted">
+                            Desarrollo
+                        </div>
+
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-6">
+
+                            <div class="metric-card">
+
+                                <small>Altura</small>
+
+                                <h5>{{ ultima_medicion.altura }}%</h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="metric-card">
+
+                                <small>Humedad del sustrato</small>
+
+                                <h5>{{ ultima_medicion.humedad_sustrato }}%</h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <div class="metric-card">
+
+                                <small>Hoja</small>
+
+                                <h5>{{ ultima_medicion.numero_hojas }} 🌿</h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <div class="metric-card">
+
+                                <small>Flores</small>
+
+                                <h5>{{ ultima_medicion.numero_flores }} 🌸</h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <div class="metric-card">
+
+                                <small>Flores</small>
+
+                                <h5>{{ ultima_medicion.numero_frutos }} 🍅</h5>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component health-card mb-4">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div>
+
+                            <h5 class="mb-0">
+                                Medición ambiental
+                            </h5>
+
+                            <small class="text-muted">
+                                {{ planta.location.name }}
+                            </small>
+
+                        </div>
+
+                        {% if medicion_ambiental.estado == "Óptimo" %}
+
+                        <span class="badge bg-success-subtle text-success">
+                            {{ medicion_ambiental.estado }}
+                        </span>
+
+                        {% elif medicion_ambiental.estado == "Atención" %}
+
+                        <span class="badge bg-warning-subtle text-warning">
+                            {{ medicion_ambiental.estado }}
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-danger-subtle text-danger">
+                            {{ medicion_ambiental.estado }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-4">
+
+                            <div class="metric-card text-center">
+
+                                <i class="bi bi-thermometer-half fs-4 text-danger"></i>
+
+                                <small class="d-block text-muted mt-2">
+                                    Temperatura
+                                </small>
+
+                                <h5 class="mb-0">
+                                    {{ medicion_ambiental.temperatura }} °C
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <div class="metric-card text-center">
+
+                                <i class="bi bi-droplet fs-4 text-primary"></i>
+
+                                <small class="d-block text-muted mt-2">
+                                    Humedad
+                                </small>
+
+                                <h5 class="mb-0">
+                                    {{ medicion_ambiental.humedad }} %
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <div class="metric-card text-center">
+
+                                <i class="bi bi-calendar-event fs-4 text-secondary"></i>
+
+                                <small class="d-block text-muted mt-2">
+                                    Registro
+                                </small>
+
+                                <h6 class="mb-0">
+                                    {{ medicion_ambiental.fecha_registro.strftime("%d/%m") }}
+                                </h6>
+
+                                <small class="text-muted">
+                                    {{ medicion_ambiental.fecha_registro.strftime("%H:%M") }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="component notes-card">
+
+                <div class="card-header">
+                    Observaciones
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+
+                        <small class="text-muted fw-semibold">
+                            Medición ambiental
+                        </small>
+
+                        <p class="mb-0">
+
+                            {% if medicion_ambiental and medicion_ambiental.observaciones %}
+
+                            {{ medicion_ambiental.observaciones }}
+
+                            {% else %}
+
+                            <span class="text-muted">
+                                Sin observaciones.
+                            </span>
+
+                            {% endif %}
+
+                        </p>
+
+                    </div>
+
+                    <hr>
+
+                    <div>
+
+                        <small class="text-muted fw-semibold">
+                            Última inspección de la planta
+                        </small>
+
+                        <p class="mb-0">
+
+                            {% if ultima_medicion and ultima_medicion.observaciones %}
+
+                            {{ ultima_medicion.observaciones }}
+
+                            {% else %}
+
+                            <span class="text-muted">
+                                Sin observaciones.
+                            </span>
+
+                            {% endif %}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% include "components/medicion_plantas/modal.html" %}
+
+</div>
+
+{% endblock %}

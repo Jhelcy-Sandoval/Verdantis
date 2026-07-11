@@ -1,0 +1,60 @@
+<div class="component h-100">
+
+    <div class="card-header fw-bolder">
+        Estado general del vivero
+    </div>
+
+    <div class="card-body">
+
+        <div  style="height:380px">
+
+            <canvas id="estadoPie" data-optimas="{{ dashboard.estado_vivero.optimas }}"
+                data-observacion="{{ dashboard.estado_vivero.observacion }}"
+                data-criticas="{{ dashboard.estado_vivero.criticas }}">
+            </canvas>
+
+        </div>
+
+        <div class="mt-4">
+
+            <div class="d-flex justify-content-between py-2">
+
+                <span>
+                    🟢 Óptimas
+                </span>
+
+                <strong>
+                    {{ dashboard.estado_vivero.optimas }}
+                </strong>
+
+            </div>
+
+            <div class="d-flex justify-content-between py-2">
+
+                <span>
+                    🟡 Observación
+                </span>
+
+                <strong>
+                    {{ dashboard.estado_vivero.observacion }}
+                </strong>
+
+            </div>
+
+            <div class="d-flex justify-content-between py-2">
+
+                <span>
+                    🔴 Críticas
+                </span>
+
+                <strong>
+                    {{ dashboard.estado_vivero.criticas }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

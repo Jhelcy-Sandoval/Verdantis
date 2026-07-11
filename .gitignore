@@ -1,3 +1,4 @@
 /metricas-entorno
 .gitignore
 __pycache__/
+.env

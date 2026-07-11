@@ -1,0 +1,95 @@
+<div class="component h-100">
+
+    <div class="card-header mb-3 fw-bolder">
+
+        Estado por ubicación
+
+    </div>
+
+    <div class="card-body">
+
+        {% for location in dashboard.estado_ubicaciones %}
+
+        <div class="mb-4">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <h6 class="mb-0">
+
+                        {{ location.nombre }}
+
+                    </h6>
+
+                    <small class="text-muted">
+
+                        {{ location.plantas }} plantas ·
+                        {{ location.especies }} especies
+
+                    </small>
+
+                </div>
+
+                {% if location.estado == "Óptimo" %}
+
+                    <span class="badge bg-success-subtle text-success">
+
+                        {{ location.estado }}
+
+                    </span>
+
+                {% elif location.estado == "Atención" %}
+
+                    <span class="badge bg-warning-subtle text-warning">
+
+                        {{ location.estado }}
+
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-danger-subtle text-danger">
+
+                        {{ location.estado }}
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="progress mt-2" style="height:6px;">
+
+                {% if location.estado == "Óptimo" %}
+
+                    <div
+                        class="progress-bar bg-success"
+                        style="width:100%">
+                    </div>
+
+                {% elif location.estado == "Atención" %}
+
+                    <div
+                        class="progress-bar bg-warning"
+                        style="width:65%">
+                    </div>
+
+                {% else %}
+
+                    <div
+                        class="progress-bar bg-danger"
+                        style="width:35%">
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>

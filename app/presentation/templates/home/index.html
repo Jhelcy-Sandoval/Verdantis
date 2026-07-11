@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Dashboard | Métricas Verdes
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="mb-4">
+
+        <h2 class="display-6 fw-bold">
+            Resumen del vivero
+        </h2>
+
+        <p class="text-muted">
+            Bienvenid@, aquí tienes el estado general de tu vivero.
+        </p>
+
+    </div>
+
+    {% include "components/home/card.html" %}
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-4">
+
+            {% include "components/home/pie.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/location_status.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/environment_average.html" %}
+
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-8">
+
+            {% include "components/home/garden_distribution.html" %}
+
+        </div>
+
+        <div class="col-xl-4">
+
+            {% include "components/home/risk_alerts.html" %}
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-xl-6">
+
+            {% include "components/home/plant_inspections.html" %}
+
+        </div>
+
+        <div class="col-xl-6">
+
+            {% include "components/home/recent_activity.html" %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

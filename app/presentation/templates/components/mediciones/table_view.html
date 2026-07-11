@@ -1,0 +1,177 @@
+<div class="card dashboard-table shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-borderless align-middle">
+
+                <thead class="table-header">
+
+                    <tr>
+
+                        <th>UBICACIÓN</th>
+                        <th>ÚLTIMA MEDICIÓN</th>
+                        <th>TEMPERATURA</th>
+                        <th>HUMEDAD</th>
+                        <th>DESARROLLO</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for medicion in mediciones %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="plant-avatar">
+
+                                    <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-success-subtle">
+
+                                        <i class="bi bi-geo-alt fs-5 text-success"></i>
+
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="fw-semibold">
+
+                                        {{ medicion.locations.name }}
+
+                                    </div>
+
+                                    <small class="text-muted">
+
+                                        ID: {{ medicion.locations.id }}
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <div>
+
+                                {{ medicion.fecha_registro.strftime("%d/%m/%Y") }}
+
+                            </div>
+
+                            <small class="text-muted">
+
+                                {{ medicion.fecha_registro.strftime("%H:%M") }}
+
+                            </small>
+
+                        </td>
+
+                        <td>
+
+                            <span class="fw-semibold">
+
+                                {{ medicion.temperatura }} °C
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {{ medicion.humedad }} %
+
+                        </td>
+
+                        <td>
+
+                            {{ medicion.desarrollo }} %
+
+                        </td>
+
+                        <td>
+
+                            {% if medicion.estado == "Óptimo" %}
+
+                            <span class="badge bg-success-subtle text-success">
+
+                                {{ medicion.estado }}
+
+                            </span>
+
+                            {% elif medicion.estado == "Atención" %}
+
+                            <span class="badge bg-warning-subtle text-warning">
+
+                                 {{ medicion.estado }}
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger-subtle text-danger">
+
+                                {{ medicion.estado }}
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <div class="d-flex gap-2">
+
+                                <a
+                                    href="{{ url_for('mediciones.detalle_medicion', medicion_id=medicion.id) }}"
+                                    class="btn btn-sm btn-light"
+                                >
+
+                                    <i class="bi bi-eye"></i>
+
+                                </a>
+
+                                <form
+                                    action="{{ url_for('mediciones.eliminar_medicion', medicion_id=medicion.id) }}"
+                                    method="POST" 
+                                >
+
+                                    <button 
+                                        class="btn btn-sm btn-light"
+                                    >
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

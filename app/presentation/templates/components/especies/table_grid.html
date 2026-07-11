@@ -1,0 +1,161 @@
+<div class="row g-3">
+
+    {% for especie in especies %}
+
+    <div class="col-md-4 col-lg-3">
+
+        <div class="card h-100 shadow-sm border-0">
+
+            <div class="card-body">
+
+                <div class="text-center mb-3">
+
+                    <div class="plant-avatar mx-auto mb-2">
+
+                        <div
+                            class="w-100 h-100 d-flex align-items-center justify-content-center bg-success-subtle rounded-circle">
+                            {% if especie.photo_url %}
+
+                            <img src="{{ especie.photo_url }}" alt="{{ especie.name }}">
+
+                            {% else %}
+
+                            <img src="{{ url_for('static', filename='img/default-plant.png') }}" alt="Sin imagen">
+
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <h6 class="fw-bold mb-0">
+
+                        {{ especie.name }}
+
+                    </h6>
+
+                    <small class="text-muted">
+
+                        {{ especie.scientific_name }}
+
+                    </small>
+
+                </div>
+
+                <div class="mb-2">
+
+                    <small class="text-muted">
+                        Dificultad
+                    </small>
+
+                    <div>
+
+                        {% if especie.difficulty_level == "Fácil" %}
+
+                        <span class="badge bg-success-subtle text-success">
+
+                            {{ especie.difficulty_level }}
+
+                        </span>
+
+                        {% elif especie.difficulty_level == "Media" %}
+
+                        <span class="badge bg-warning-subtle text-warning">
+
+                            {{ especie.difficulty_level }}
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-danger-subtle text-danger">
+
+                            {{ especie.difficulty_level }}
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <div class="mb-2">
+
+                    <small class="text-muted">
+                        Crecimiento
+                    </small>
+
+                    <div>
+
+                        <span class="badge bg-info-subtle text-info">
+
+                            {{ especie.expected_growth_rate }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-2">
+
+                    <small class="text-muted">
+                        Humedad Ideal
+                    </small>
+
+                    <div>
+
+                        {{ especie.ideal_humidity_min }}%
+                        -
+                        {{ especie.ideal_humidity_max }}%
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <small class="text-muted">
+                        Temperatura Ideal
+                    </small>
+
+                    <div>
+
+                        {{ especie.ideal_temperature_min }}°C
+                        -
+                        {{ especie.ideal_temperature_max }}°C
+
+                    </div>
+
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <a href="{{ url_for('especie.detalle_especie', especie_id=especie.id) }}"
+                        class="btn btn-sm btn-light">
+                        <i class="bi bi-eye"></i>
+                    </a>
+
+                    {% if especie.user_id %}
+
+                    <form action="{{ url_for('especie.eliminar_especie', especie_id=especie.id) }}" method="POST">
+
+                        <button class="btn btn-sm btn-light">
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>

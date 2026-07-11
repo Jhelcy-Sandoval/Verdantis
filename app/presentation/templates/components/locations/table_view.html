@@ -1,0 +1,190 @@
+<div class="table-responsive">
+
+    <table class="table table-borderless align-middle">
+
+        <thead class="table-header">
+
+            <tr>
+
+                <th>UBICACIÓN</th>
+                <th>ESTADO</th>
+                <th>TEMPERATURA IDEAL</th>
+                <th>HUMEDAD IDEAL</th>
+                <th>PLANTAS</th>
+                <th>ESPECIES</th>
+                <th>ACTUALIZADO</th>
+                <th>ACCIONES</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for location in locations %}
+
+            <tr>
+
+                <td>
+
+                    <div class="fw-semibold">
+
+                        {{ location.name }}
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        {{ location.description }}
+
+                    </small>
+
+                </td>
+
+                <td>
+
+                    {% if location.health_status == "Óptimo" %}
+
+                        <span class="badge bg-success-subtle text-success">
+                            {{ location.health_status }}
+                        </span>
+
+                    {% elif location.health_status == "Atención" %}
+
+                        <span class="badge bg-warning-subtle text-warning">
+                            {{ location.health_status }}
+                        </span>
+
+                    {% elif location.health_status == "Crítico" %}
+
+                        <span class="badge bg-danger-subtle text-danger">
+                            {{ location.health_status }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-secondary-subtle text-secondary">
+                            Sin datos
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if location.ideal_temperature_min is not none %}
+
+                        {{ location.ideal_temperature_min }}°C -
+                        {{ location.ideal_temperature_max }}°C
+
+                    {% else %}
+
+                        <span class="text-muted">
+                            No configurada
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if location.ideal_humidity_min is not none %}
+
+                        {{ location.ideal_humidity_min }}% -
+                        {{ location.ideal_humidity_max }}%
+
+                    {% else %}
+
+                        <span class="text-muted">
+                            No configurada
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-success-subtle text-success">
+
+                        {{ location.plants_count }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-primary-subtle text-primary">
+
+                        {{ location.species_count }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    {% if location.profile_updated_at %}
+
+                        {{ location.profile_updated_at.strftime("%d/%m/%Y") }}
+
+                        <br>
+
+                        <small class="text-muted">
+
+                            {{ location.profile_updated_at.strftime("%H:%M") }}
+
+                        </small>
+
+                    {% else %}
+
+                        <span class="text-muted">
+
+                            Nunca
+
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <div class="d-flex gap-2">
+
+                        {% if location.user_id %}
+
+                        <form
+                            action="{{ url_for('locations.eliminar_location', location_id=location.id) }}"
+                            method="POST"
+                        >
+
+                            <button
+                                class="btn btn-sm btn-light"
+                                onclick="return confirm('¿Eliminar esta ubicación?')"
+                            >
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                        {% endif %}
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

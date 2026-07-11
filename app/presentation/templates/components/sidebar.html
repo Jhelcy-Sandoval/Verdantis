@@ -1,0 +1,64 @@
+<div id="sidebar" class="sidebar">
+
+    <div>
+
+        <div class="sidebar-header p-3 border-bottom">
+
+            <h5 class="m-0 sidebar-title">
+                Métricas Verdes
+            </h5>
+
+            <button id="toggleSidebar" class="btn btn-sm">
+                ◀
+            </button>
+
+        </div>
+
+        <div class="list-group list-group-flush">
+
+            <a href="{{ url_for('home.home') }}" class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-speedometer2"></i>
+                <span class="menu-text ms-2">Dashboard</span>
+            </a>
+
+            <a href="{{ url_for('planta.listar_plantas') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-tree"></i>
+                <span class="menu-text ms-2">Plantas</span>
+            </a>
+
+            <a href="{{ url_for('especie.listar_especies') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-folder"></i>
+                <span class="menu-text ms-2">Especies</span>
+            </a>
+
+            <a href="{{ url_for('locations.listar_locations') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-house"></i>
+                <span class="menu-text ms-2">Ubicaciones</span>
+            </a>
+
+            <a href="{{ url_for('mediciones.listar_mediciones_ubicaciones') }}"
+                class="list-group-item list-group-item-action border-secondary">
+                <i class="bi bi-thermometer-half"></i>
+                <span class="menu-text ms-2">
+                    Monitoreo
+                </span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="sidebar-footer">
+
+        <a href="{{ url_for('auth.logout') }}" class="list-group-item list-group-item-action logout-link">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="menu-text ms-2">
+                Cerrar sesión
+            </span>
+        </a>
+
+    </div>
+</div>

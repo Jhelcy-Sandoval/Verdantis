@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg p-0">
+    <div class="container-fluid p-3">
+
+        <button
+            class="navbar-toggler "
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <div class="d-flex
+                flex-column
+                flex-md-row
+                justify-content-end
+                align-items-start
+                align-items-md-center
+                gap-3
+                w-100
+                mt-3
+                mt-md-0">
+
+                <form class="d-none d-md-flex" role="search">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Buscar..."
+                        aria-label="Search"
+                    />
+                </form>
+                <a
+                    href="#"
+                    class="text-black text-decoration-none d-flex align-items-center gap-2 "
+                >
+                    <i class="bi bi-bell"></i>
+
+                    <span class="d-inline d-md-none">
+                        Alertas
+                    </span>
+                </a>
+                <a
+                    href="#"
+                    class="text-black text-decoration-none d-flex align-items-center gap-2"
+                >
+                    <i class="bi bi-question-circle"></i>
+
+                    <span class="d-inline d-md-none">
+                        Ayuda
+                    </span>
+                </a>
+                <div class="dropdown">
+                    <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                    >
+                       <i class="bi bi-download"></i> Exportar
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Reporte
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Excel
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
