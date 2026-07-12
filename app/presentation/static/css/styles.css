@@ -79,6 +79,13 @@ h2::first-letter {
     text-transform: uppercase;
 }
 
+/* logo */
+.logo-icon {
+    width: 3rem;
+    height: 3rem;
+    filter: brightness(0) invert(1);
+}
+
 
 /* ================================================= */
 /* ALERTA */

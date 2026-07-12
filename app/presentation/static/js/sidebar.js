@@ -8,8 +8,8 @@ if (btn) {
 
         btn.textContent =
             sidebar.classList.contains("collapsed")
-                ? "▶"
-                : "◀";
+                ? "▸"
+                : "◂";
 
     });
 }
